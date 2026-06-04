@@ -1,0 +1,1423 @@
+cat > /mnt/user-data/outputs/questoes_80_direito_constitucional.html << 'HTMLEOF'
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>80 Questões — Direito Constitucional | Tripartição dos Poderes</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2230;
+    --border: #2a3345;
+    --accent: #3b82f6;
+    --accent2: #10b981;
+    --accent3: #f59e0b;
+    --accent4: #8b5cf6;
+    --text: #e6edf3;
+    --text-muted: #7d8590;
+    --text-dim: #adbac7;
+    --gold: #f5c518;
+    --red: #ef4444;
+    --green: #22c55e;
+    --radius: 14px;
+    --font-title: 'DM Serif Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #0d1117 0%, #1a2035 60%, #0d1117 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 56px 24px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(59,130,246,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .tag-pill {
+    display: inline-block;
+    background: rgba(59,130,246,0.15);
+    border: 1px solid rgba(59,130,246,0.3);
+    color: var(--accent);
+    font-size: 0.73rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  header h1 {
+    font-family: var(--font-title);
+    font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+    font-weight: 400; letter-spacing: -0.02em; line-height: 1.15;
+    margin-bottom: 14px;
+    background: linear-gradient(135deg, #e6edf3 30%, #7d8590);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  header p { color: var(--text-muted); font-size: 0.95rem; max-width: 580px; margin: 0 auto; }
+  .header-stats {
+    display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
+    margin-top: 28px;
+  }
+  .stat-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 22px; text-align: center;
+    min-width: 110px;
+  }
+  .stat-num { font-family: var(--font-title); font-size: 1.8rem; color: var(--gold); display: block; }
+  .stat-label { font-size: 0.72rem; color: var(--text-muted); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(13,17,23,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; gap: 0; overflow-x: auto; scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-link {
+    padding: 13px 18px; font-size: 0.83rem; font-weight: 500;
+    color: var(--text-muted); white-space: nowrap;
+    border-bottom: 2px solid transparent; cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .nav-link:hover, .nav-link.active { color: var(--text); border-bottom-color: var(--accent); }
+
+  /* SCORE BAR */
+  .score-panel {
+    position: sticky; top: 49px; z-index: 90;
+    background: rgba(22,27,34,0.97);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 24px;
+  }
+  .score-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  }
+  .score-text {
+    font-size: 0.85rem; color: var(--text-dim);
+    white-space: nowrap;
+  }
+  .score-text strong { color: var(--gold); font-size: 1.05rem; }
+  .progress-wrap { flex: 1; min-width: 120px; }
+  .progress-bg {
+    height: 6px; background: var(--border); border-radius: 100px; overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 100px; transition: width 0.4s; width: 0%;
+  }
+  .btn-reset {
+    background: rgba(245,197,24,0.1); border: 1px solid rgba(245,197,24,0.3);
+    color: var(--gold); padding: 7px 16px; border-radius: 7px;
+    font-size: 0.8rem; font-weight: 600; cursor: pointer;
+    font-family: var(--font-body); transition: background 0.2s; white-space: nowrap;
+  }
+  .btn-reset:hover { background: rgba(245,197,24,0.2); }
+
+  /* MAIN */
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 24px 80px; }
+
+  /* SECTION HEADER */
+  .section-head {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 22px; padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+    scroll-margin-top: 110px;
+  }
+  .section-icon {
+    width: 40px; height: 40px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .si-leg { background: rgba(59,130,246,0.15); }
+  .si-proc { background: rgba(139,92,246,0.15); }
+  .si-exe { background: rgba(16,185,129,0.15); }
+  .si-jud { background: rgba(245,158,11,0.15); }
+  .si-teo { background: rgba(239,68,68,0.1); }
+  .section-title { font-family: var(--font-title); font-size: 1.55rem; font-weight: 400; }
+  .section-count { font-size: 0.78rem; color: var(--text-muted); margin-top: 1px; }
+
+  section { margin-bottom: 52px; }
+
+  /* QUESTION CARD */
+  .q-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    margin-bottom: 14px;
+    transition: border-color 0.2s;
+  }
+  .q-card.answered-ok { border-color: rgba(34,197,94,0.3); }
+  .q-card.answered-fail { border-color: rgba(239,68,68,0.25); }
+
+  .q-meta {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .q-num {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-muted); text-transform: uppercase;
+  }
+  .q-badge {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em;
+    padding: 2px 8px; border-radius: 4px;
+    text-transform: uppercase;
+  }
+  .qb-leg { background: rgba(59,130,246,0.15); color: #93c5fd; }
+  .qb-proc { background: rgba(139,92,246,0.15); color: #c4b5fd; }
+  .qb-exe { background: rgba(16,185,129,0.15); color: #6ee7b7; }
+  .qb-jud { background: rgba(245,158,11,0.15); color: #fcd34d; }
+  .qb-teo { background: rgba(239,68,68,0.12); color: #fca5a5; }
+  .qb-tf { background: rgba(245,197,24,0.12); color: var(--gold); }
+
+  .q-text { font-size: 0.93rem; font-weight: 500; margin-bottom: 15px; line-height: 1.6; }
+
+  /* Options */
+  .q-opts { display: flex; flex-direction: column; gap: 7px; }
+  .q-opt {
+    padding: 10px 15px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.85rem; font-weight: 400;
+    cursor: pointer;
+    background: var(--surface2);
+    color: var(--text-dim);
+    text-align: left;
+    transition: all 0.2s;
+    font-family: var(--font-body);
+    line-height: 1.5;
+  }
+  .q-opt:hover:not(.disabled) { border-color: var(--accent); color: var(--text); }
+  .q-opt.correct { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.45); color: var(--green); }
+  .q-opt.wrong { background: rgba(239,68,68,0.09); border-color: rgba(239,68,68,0.4); color: var(--red); }
+  .q-opt.disabled { cursor: default; pointer-events: none; }
+
+  /* Feedback */
+  .q-feedback {
+    display: none; margin-top: 12px; padding: 11px 15px;
+    border-radius: 8px; font-size: 0.84rem; line-height: 1.55;
+  }
+  .q-feedback.show { display: block; }
+  .q-feedback.ok { background: rgba(34,197,94,0.09); color: var(--green); border: 1px solid rgba(34,197,94,0.3); }
+  .q-feedback.fail { background: rgba(239,68,68,0.09); color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
+
+  /* True/False */
+  .tf-opts { display: flex; gap: 10px; flex-wrap: wrap; }
+  .tf-opt {
+    padding: 10px 28px;
+    border: 1px solid var(--border); border-radius: 8px;
+    font-size: 0.9rem; font-weight: 600; cursor: pointer;
+    background: var(--surface2); color: var(--text-dim);
+    transition: all 0.2s; font-family: var(--font-body);
+  }
+  .tf-opt:hover:not(.disabled) { border-color: var(--accent); color: var(--text); }
+  .tf-opt.correct { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.45); color: var(--green); }
+  .tf-opt.wrong { background: rgba(239,68,68,0.09); border-color: rgba(239,68,68,0.4); color: var(--red); }
+  .tf-opt.disabled { cursor: default; pointer-events: none; }
+
+  /* SCROLL TO TOP */
+  #totop {
+    position: fixed; bottom: 20px; right: 20px;
+    width: 40px; height: 40px; background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 50%;
+    cursor: pointer; display: flex; align-items: center;
+    justify-content: center; font-size: 1rem;
+    color: var(--text-muted); opacity: 0; pointer-events: none;
+    transition: opacity 0.3s; z-index: 200;
+  }
+  #totop.visible { opacity: 1; pointer-events: all; }
+  #totop:hover { color: var(--text); border-color: var(--accent); }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 30px 24px;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted); font-size: 0.8rem;
+  }
+  footer strong { color: var(--text-dim); }
+
+  @media (max-width: 600px) {
+    header { padding: 36px 16px 28px; }
+    main { padding: 20px 14px 60px; }
+    .q-card { padding: 18px 16px; }
+    .header-stats { gap: 12px; }
+    .stat-box { min-width: 90px; padding: 10px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="tag-pill">Banco de Questões — Direito Constitucional</div>
+  <h1>80 Questões de Fixação<br>Tripartição dos Poderes</h1>
+  <p>Com base em <strong>Coleção Esquematizado — Direito Constitucional 29ª Ed. 2025</strong>, Pedro Lenza.</p>
+  <div class="header-stats">
+    <div class="stat-box"><span class="stat-num">80</span><span class="stat-label">Questões</span></div>
+    <div class="stat-box"><span class="stat-num">5</span><span class="stat-label">Blocos</span></div>
+    <div class="stat-box"><span class="stat-num" id="hdr-score">0</span><span class="stat-label">Acertos</span></div>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-link" href="#bloco-teo">Teoria Geral</a>
+    <a class="nav-link" href="#bloco-leg">Legislativo</a>
+    <a class="nav-link" href="#bloco-proc">Proc. Legislativo</a>
+    <a class="nav-link" href="#bloco-exe">Executivo</a>
+    <a class="nav-link" href="#bloco-jud">Judiciário</a>
+  </div>
+</nav>
+
+<div class="score-panel">
+  <div class="score-inner">
+    <div class="score-text">Placar: <strong id="score-display">0 / 80</strong></div>
+    <div class="progress-wrap">
+      <div class="progress-bg"><div class="progress-fill" id="prog-bar"></div></div>
+    </div>
+    <div class="score-text" id="pct-display" style="color:var(--text-muted)">0%</div>
+    <button class="btn-reset" onclick="resetAll()">↺ Reiniciar</button>
+  </div>
+</div>
+
+<main>
+
+<!-- ===================== BLOCO 1: TEORIA GERAL ===================== -->
+<section id="bloco-teo">
+  <div class="section-head">
+    <div class="section-icon si-teo">🏗</div>
+    <div>
+      <div class="section-title" style="color:#fca5a5">Bloco 1 — Teoria Geral</div>
+      <div class="section-count">Questões 01 a 16 · Separação dos Poderes, funções típicas e atípicas, freios e contrapesos</div>
+    </div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="qc1">
+    <div class="q-meta"><span class="q-num">Questão 01</span><span class="q-badge qb-teo">Teoria Geral</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">A teoria da separação dos poderes foi primeiramente elaborada por Montesquieu em "O Espírito das Leis", não havendo contribuições anteriores de outros pensadores sobre a divisão das funções do Estado.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,1)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,1)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb1">Falso. Aristóteles, em "Política", já havia identificado três funções estatais distintas (editar normas, aplicá-las e julgar conflitos), ainda que concentradas no soberano. Montesquieu aprimorou a teoria ao propor que tais funções fossem exercidas por órgãos distintos, autônomos e independentes entre si.</div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qc2">
+    <div class="q-meta"><span class="q-num">Questão 02</span><span class="q-badge qb-teo">Teoria Geral</span></div>
+    <div class="q-text">Segundo a doutrina e a CF/88, o poder do Estado é:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,2)">a) Tripartido, cabendo um terço a cada órgão</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,2)">b) Divisível entre os Poderes conforme decisão do Congresso Nacional</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,2)">c) Uno, indivisível e indelegável, manifestando-se por órgãos que exercem funções distintas</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,2)">d) Compartilhado igualmente entre o Legislativo, Executivo e Judiciário</button>
+    </div>
+    <div class="q-feedback" id="fb2">Correto. O poder é uno, indivisível e indelegável — emana do povo e é um atributo do Estado. O que se divide são as funções (legislativa, executiva e jurisdicional), exercidas por órgãos (Legislativo, Executivo e Judiciário). A expressão "tripartição de Poderes" é tecnicamente imprecisa.</div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qc3">
+    <div class="q-meta"><span class="q-num">Questão 03</span><span class="q-badge qb-teo">Teoria Geral</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">O julgamento do Presidente da República pelo Senado Federal nos crimes de responsabilidade é exemplo de função atípica de natureza jurisdicional exercida pelo Poder Legislativo.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,3)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,3)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb3">Verdadeiro. O Senado Federal exerce função atípica de natureza jurisdicional ao processar e julgar o Presidente da República nos crimes de responsabilidade (art. 52, I, CF/88). Trata-se de função típica do Judiciário exercida pelo Legislativo por expressa previsão constitucional, sem que isso viole a separação de poderes.</div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qc4">
+    <div class="q-meta"><span class="q-num">Questão 04</span><span class="q-badge qb-teo">Teoria Geral</span></div>
+    <div class="q-text">Qual é a função atípica de natureza legislativa exercida pelo Poder Executivo, prevista na CF/88?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,4)">a) Elaborar o regimento interno dos tribunais</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,4)">b) Decretar a intervenção federal nos Estados</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,4)">c) Adotar Medidas Provisórias com força de lei (art. 62)</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,4)">d) Aplicar as leis ao caso concreto por meio de decisões administrativas</button>
+    </div>
+    <div class="q-feedback" id="fb4">Correto. A adoção de Medidas Provisórias com força de lei (art. 62) é exemplo clássico de função atípica de natureza legislativa exercida pelo Poder Executivo. Outras funções atípicas legislativas do Executivo incluem a edição de leis delegadas (art. 68) e de decretos autônomos (art. 84, VI).</div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qc5">
+    <div class="q-meta"><span class="q-num">Questão 05</span><span class="q-badge qb-teo">Teoria Geral</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">O princípio da indelegabilidade de atribuições impede absolutamente que um Poder exerça função de natureza típica de outro, mesmo que haja expressa previsão constitucional.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,5)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,5)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb5">Falso. O princípio da indelegabilidade impede delegações não previstas na Constituição. Porém, quando a própria CF autoriza (como nas funções atípicas), o exercício de função típica de outro Poder é plenamente válido. Um órgão só pode exercer atribuições de outro quando houver expressa previsão constitucional ou delegação direta do poder constituinte originário.</div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qc6">
+    <div class="q-meta"><span class="q-num">Questão 06</span><span class="q-badge qb-teo">Teoria Geral</span></div>
+    <div class="q-text">O mecanismo de freios e contrapesos (checks and balances) tem como objetivo principal:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,6)">a) Concentrar o poder na figura do Chefe do Executivo para garantir eficiência</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,6)">b) Impedir a formação de instâncias hegemônicas e garantir a fiscalização recíproca dos Poderes</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,6)">c) Atribuir ao Judiciário a prerrogativa de anular decisões do Legislativo sem qualquer critério</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,6)">d) Subordinar o Poder Executivo ao Legislativo para garantir a soberania popular</button>
+    </div>
+    <div class="q-feedback" id="fb6">Correto. Segundo o STF (MS 23.452, Rel. Min. Celso de Mello), o sistema constitucional ao consagrar o princípio da limitação de poderes busca impedir a formação de instâncias hegemônicas, neutralizando a possibilidade de dominação institucional de qualquer dos Poderes. Isso ocorre por meio de interferências e controles recíprocos — os freios e contrapesos.</div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qc7">
+    <div class="q-meta"><span class="q-num">Questão 07</span><span class="q-badge qb-teo">Teoria Geral</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">A função jurisdicional tem por objeto aplicar o direito aos casos concretos a fim de dirimir conflitos de interesse, enquanto a função legislativa consiste na edição de regras gerais, abstratas, impessoais e inovadoras da ordem jurídica.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,7)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,7)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb7">Verdadeiro. De acordo com as lições de José Afonso da Silva, citadas na obra de Pedro Lenza: a função legislativa "consiste na edição de regras gerais, abstratas, impessoais e inovadoras da ordem jurídica"; a função jurisdicional "tem por objeto aplicar o direito aos casos concretos a fim de dirimir conflitos de interesse"; e a função executiva "resolve os problemas concretos e individualizados, de acordo com as leis".</div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qc8">
+    <div class="q-meta"><span class="q-num">Questão 08</span><span class="q-badge qb-teo">Teoria Geral</span></div>
+    <div class="q-text">O art. 97 da CF/88, que permite aos juízes declarar a inconstitucionalidade de lei ou ato normativo, é exemplo de:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,8)">a) Função típica do Judiciário, sem qualquer relação com os demais Poderes</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,8)">b) Violação ao princípio da separação dos poderes</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,8)">c) Mecanismo de freios e contrapesos, exercido pelo Judiciário sobre o Legislativo</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,8)">d) Função atípica de natureza legislativa do Judiciário</button>
+    </div>
+    <div class="q-feedback" id="fb8">Correto. O controle de constitucionalidade é um dos mecanismos de freios e contrapesos pelo qual o Judiciário controla atos do Legislativo (e do Executivo), equilibrando o exercício do poder. A CF/88 enumera diversos exemplos desse mecanismo de interpenetração, sempre com o objetivo de evitar abusos de poder.</div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qc9">
+    <div class="q-meta"><span class="q-num">Questão 09</span><span class="q-badge qb-teo">Teoria Geral</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">Segundo o art. 2.º da CF/88, são Poderes da União, independentes e harmônicos entre si, o Legislativo, o Executivo e o Judiciário.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,9)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,9)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb9">Verdadeiro. É a redação exata do art. 2.º da CF/88. A doutrina, contudo, alerta que tecnicamente o que se divide não são os "Poderes" (o poder é uno), mas os órgãos que exercem funções distintas. A expressão "Poderes" no texto constitucional equivale, com rigor técnico, a "órgãos".</div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qc10">
+    <div class="q-meta"><span class="q-num">Questão 10</span><span class="q-badge qb-teo">Teoria Geral</span></div>
+    <div class="q-text">A elaboração do regimento interno pelos Tribunais (art. 96, I, "a", CF/88) é exemplo de função atípica de qual natureza exercida pelo Poder Judiciário?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,10)">a) Natureza jurisdicional</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,10)">b) Natureza executiva</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,10)">c) Natureza legislativa</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,10)">d) Não é função atípica — é função típica do Judiciário</button>
+    </div>
+    <div class="q-feedback" id="fb10">Correto. A elaboração do regimento interno dos tribunais é função atípica de natureza legislativa exercida pelo Judiciário (art. 96, I, "a"). Outra função atípica do Judiciário é a de natureza executiva, como conceder licenças e férias aos magistrados e serventuários (art. 96, I, "f").</div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="qc11">
+    <div class="q-meta"><span class="q-num">Questão 11</span><span class="q-badge qb-teo">Teoria Geral</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">A separação de poderes adotada pelo Brasil é a forma pura e absoluta proposta por Montesquieu, vedando qualquer interpenetração entre os Poderes.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,11)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,11)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb11">Falso. A teoria da tripartição foi adotada pelos Estados modernos de maneira abrandada. Diante das realidades sociais e históricas, passou-se a permitir maior interpenetração entre os Poderes, atenuando a teoria que pregava a separação pura e absoluta. Por isso, cada órgão exerce funções típicas e também funções atípicas.</div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qc12">
+    <div class="q-meta"><span class="q-num">Questão 12</span><span class="q-badge qb-teo">Teoria Geral</span></div>
+    <div class="q-text">Considerando o mecanismo de freios e contrapesos, assinale a alternativa que NÃO representa exemplo desse mecanismo:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,12)">a) O Congresso Nacional pode rejeitar Medidas Provisórias adotadas pelo Presidente (art. 62)</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,12)">b) O Parlamento pode derrubar o veto presidencial a projetos de lei (art. 66, §§ 4.º a 6.º)</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,12)">c) O STF pode declarar a inconstitucionalidade de lei federal ou estadual (art. 102, I, "a")</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,12)">d) O Presidente da República pode nomear qualquer pessoa de sua confiança para qualquer cargo público sem limitação constitucional</button>
+    </div>
+    <div class="q-feedback" id="fb12">Correto (alternativa D é a incorreta). A nomeação de Ministros do STF pelo PR exige aprovação prévia do Senado Federal por maioria absoluta (art. 101, par. único, c/c art. 52, III, "a" e art. 84, XIV), sendo exemplo de freio e contrapeso — não há livre nomeação sem limitação constitucional.</div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="qc13">
+    <div class="q-meta"><span class="q-num">Questão 13</span><span class="q-badge qb-teo">Teoria Geral</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">No Brasil, vigora o bicameralismo federativo em âmbito federal, enquanto o Poder Legislativo nos Estados, Municípios e Distrito Federal é unicameral.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,13)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,13)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb13">Verdadeiro. O Poder Legislativo federal é bicameral (Câmara dos Deputados e Senado Federal — art. 44, CF/88). Nos Estados (Assembleia Legislativa — art. 27), Municípios (Câmara Municipal — art. 29) e no Distrito Federal (Câmara Legislativa — art. 32), o Legislativo é unicameral, composto por uma única Casa.</div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qc14">
+    <div class="q-meta"><span class="q-num">Questão 14</span><span class="q-badge qb-teo">Teoria Geral</span></div>
+    <div class="q-text">A vedação do Presidente da República de sancionar as emendas constitucionais, sendo estas promulgadas pelas Mesas da Câmara dos Deputados e do Senado Federal, representa:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,14)">a) Violação ao princípio da separação de poderes</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,14)">b) Mecanismo de proteção da rigidez constitucional e da supremacia do poder constituinte derivado sobre o PR</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,14)">c) Função atípica do Legislativo de natureza executiva</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,14)">d) Delegação inconstitucional ao Congresso Nacional</button>
+    </div>
+    <div class="q-feedback" id="fb14">Correto. As emendas constitucionais são promulgadas pelas Mesas da Câmara dos Deputados e do Senado Federal (art. 60, §3º), sem necessidade de sanção do Presidente da República. Isso garante que o Chefe do Executivo não possa vetar alterações à Constituição aprovadas pelo poder constituinte derivado reformador.</div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qc15">
+    <div class="q-meta"><span class="q-num">Questão 15</span><span class="q-badge qb-teo">Teoria Geral</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">O Poder Judiciário pode rever atos de uma CPI do Poder Legislativo que violem a reserva constitucional de jurisdição, como a expedição de mandado de busca e apreensão domiciliar.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,15)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,15)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb15">Verdadeiro. O art. 5.º, XXXV, da CF/88 garante o acesso ao Judiciário para lesão ou ameaça a direito. O STF pode rever atos de CPIs que extrapolem a reserva constitucional de jurisdição, pois a CPI não pode determinar busca e apreensão domiciliar, interceptar comunicações telefônicas em andamento nem decretar prisão preventiva — atos esses reservados ao Judiciário.</div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-card" id="qc16">
+    <div class="q-meta"><span class="q-num">Questão 16</span><span class="q-badge qb-teo">Teoria Geral</span></div>
+    <div class="q-text">O número de Deputados Estaduais corresponde, segundo a CF/88 (art. 27), quando o Estado tem entre 9 e 12 Deputados Federais, a:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,16)">a) O dobro da representação na Câmara dos Deputados</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,16)">b) O triplo da representação na Câmara dos Deputados</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,16)">c) O mesmo número de Deputados Federais mais 24</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,16)">d) Um número fixo de 36 deputados para todos os estados</button>
+    </div>
+    <div class="q-feedback" id="fb16">Correto. Até o número de 12 Deputados Federais, o número de Deputados Estaduais será o triplo (y = 3x). A partir de 13 Deputados Federais, a fórmula muda para y = (x – 12) + 36, ou seja, y = x + 24. Assim, 12 Deputados Federais equivalem a 36 Deputados Estaduais; 13 federais = 37 estaduais.</div>
+  </div>
+</section>
+
+<!-- ===================== BLOCO 2: PODER LEGISLATIVO ===================== -->
+<section id="bloco-leg">
+  <div class="section-head">
+    <div class="section-icon si-leg">⚖</div>
+    <div>
+      <div class="section-title" style="color:#93c5fd">Bloco 2 — Poder Legislativo</div>
+      <div class="section-count">Questões 17 a 34 · Câmara, Senado, imunidades, CPI, perda do mandato</div>
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="q-card" id="qc17">
+    <div class="q-meta"><span class="q-num">Questão 17</span><span class="q-badge qb-leg">Legislativo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">O Senado Federal representa os Estados e o Distrito Federal. Os Territórios Federais, quando criados, também terão representação no Senado Federal.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,17)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,17)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb17">Falso. Os Territórios Federais não terão representação no Senado Federal, pois não possuem autonomia federativa (são simples descentralizações da União, com natureza de autarquias federais). No entanto, os Territórios elegerão 4 Deputados Federais na Câmara dos Deputados (art. 45, §2.º).</div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="q-card" id="qc18">
+    <div class="q-meta"><span class="q-num">Questão 18</span><span class="q-badge qb-leg">Legislativo</span></div>
+    <div class="q-text">Qual é o mandato dos Senadores e como se dá a renovação do Senado Federal?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,18)">a) 4 anos, com renovação integral a cada eleição</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,18)">b) 8 anos, com renovação alternada de 1/3 e 2/3 a cada 4 anos</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,18)">c) 8 anos, com renovação integral a cada 8 anos</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,18)">d) 4 anos, com renovação alternada de 1/3 e 2/3 a cada 2 anos</button>
+    </div>
+    <div class="q-feedback" id="fb18">Correto. O mandato dos Senadores é de 8 anos (duas legislaturas — art. 46, CF/88). A renovação ocorre a cada 4 anos, alternadamente por 1/3 e depois por 2/3. Cada Estado e o DF elegem 3 Senadores, cada qual com 2 suplentes.</div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="q-card" id="qc19">
+    <div class="q-meta"><span class="q-num">Questão 19</span><span class="q-badge qb-leg">Legislativo</span></div>
+    <div class="q-text">Compete PRIVATIVAMENTE à Câmara dos Deputados, entre outras atribuições:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,19)">a) Processar e julgar o Presidente da República nos crimes de responsabilidade</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,19)">b) Autorizar, por 2/3 de seus membros, a instauração de processo contra o PR e o Vice-PR</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,19)">c) Aprovar previamente, por voto secreto, a escolha de Ministros do STF</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,19)">d) Suspender a execução de lei declarada inconstitucional pelo STF</button>
+    </div>
+    <div class="q-feedback" id="fb19">Correto. A autorização por 2/3 dos membros para instaurar processo contra o PR, o Vice-PR e os Ministros de Estado é competência privativa da Câmara dos Deputados (art. 51, I). O julgamento é de competência do Senado (crimes de responsabilidade) ou do STF (crimes comuns). A aprovação de Ministros do STF cabe ao Senado (art. 52, III).</div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-card" id="qc20">
+    <div class="q-meta"><span class="q-num">Questão 20</span><span class="q-badge qb-leg">Legislativo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">Compete privativamente ao Senado Federal suspender a execução, no todo ou em parte, de lei declarada inconstitucional por decisão definitiva do STF.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,20)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,20)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb20">Verdadeiro. O art. 52, X, da CF/88 atribui ao Senado Federal a competência privativa para suspender a execução de lei declarada inconstitucional por decisão definitiva do STF, no controle difuso de constitucionalidade. Trata-se de mecanismo que confere efeitos erga omnes às decisões do STF no controle incidental.</div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="q-card" id="qc21">
+    <div class="q-meta"><span class="q-num">Questão 21</span><span class="q-badge qb-leg">Legislativo</span></div>
+    <div class="q-text">A imunidade material parlamentar (inviolabilidade), prevista no art. 53, caput, da CF/88:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,21)">a) É absoluta, protegendo qualquer opinião proferida pelo parlamentar em qualquer lugar</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,21)">b) Se restringe ao interior do Congresso Nacional</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,21)">c) Protege opiniões, palavras e votos com nexo causal com a atividade parlamentar, em qualquer lugar do território nacional</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,21)">d) Pode ser renunciada pelo próprio parlamentar quando conveniente</button>
+    </div>
+    <div class="q-feedback" id="fb21">Correto. A imunidade material não se restringe ao Congresso — protege manifestações com nexo de causalidade com a atividade parlamentar, em qualquer lugar do território nacional. Porém, não é absoluta: manifestações desvinculadas do mandato não estão protegidas. Ademais, as imunidades são irrenunciáveis, por serem prerrogativas institucionais do cargo, e não do parlamentar pessoalmente.</div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="q-card" id="qc22">
+    <div class="q-meta"><span class="q-num">Questão 22</span><span class="q-badge qb-leg">Legislativo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">A imunidade formal para a prisão dos parlamentares federais tem início a partir da diplomação pela Justiça Eleitoral, antes mesmo da posse.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,22)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,22)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb22">Verdadeiro. O art. 53, §2.º, da CF/88 é expresso: "desde a expedição do diploma, os membros do Congresso Nacional não poderão ser presos, salvo em flagrante de crime inafiançável". A diplomação ocorre antes da posse, sendo o termo inicial da imunidade formal processual relativa à prisão.</div>
+  </div>
+
+  <!-- Q23 -->
+  <div class="q-card" id="qc23">
+    <div class="q-meta"><span class="q-num">Questão 23</span><span class="q-badge qb-leg">Legislativo</span></div>
+    <div class="q-text">Preso em flagrante por crime inafiançável, um Deputado Federal tem os autos remetidos à Câmara dos Deputados. A Casa delibera sobre a prisão por:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,23)">a) Maioria simples, em votação secreta</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,23)">b) 2/3 dos membros, em votação ostensiva</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,23)">c) Maioria absoluta dos membros, em votação ostensiva (voto aberto)</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,23)">d) Unanimidade, em votação secreta</button>
+    </div>
+    <div class="q-feedback" id="fb23">Correto. Nos termos do art. 53, §2.º, CF/88 (EC 35/2001), os autos devem ser remetidos à Casa respectiva em 24 horas, para que, pelo voto da maioria absoluta de seus membros e pelo voto aberto (ostensivo — EC 35/2001 aboliu o voto secreto), resolva sobre a manutenção ou não da prisão.</div>
+  </div>
+
+  <!-- Q24 -->
+  <div class="q-card" id="qc24">
+    <div class="q-meta"><span class="q-num">Questão 24</span><span class="q-badge qb-leg">Legislativo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">As imunidades parlamentares podem ser renunciadas pelo próprio parlamentar, pois se trata de direito subjetivo pessoal do parlamentar.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,24)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,24)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb24">Falso. As imunidades parlamentares são irrenunciáveis. Trata-se de prerrogativa de caráter institucional, inerente ao Poder Legislativo, conferida ao parlamentar "ratione muneris" — em função do cargo e do mandato que exerce. O parlamentar isoladamente não tem poder de disposição sobre elas (Min. Celso de Mello, Inq. 510/DF).</div>
+  </div>
+
+  <!-- Q25 -->
+  <div class="q-card" id="qc25">
+    <div class="q-meta"><span class="q-num">Questão 25</span><span class="q-badge qb-leg">Legislativo</span></div>
+    <div class="q-text">A CPI federal tem poderes para, por ato próprio, sem necessidade de autorização judicial:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,25)">a) Decretar prisão preventiva de investigados</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,25)">b) Realizar busca e apreensão em domicílio</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,25)">c) Quebrar sigilos bancário, fiscal e de dados, mediante deliberação fundamentada e pertinente ao objeto</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,25)">d) Interceptar comunicações telefônicas em andamento</button>
+    </div>
+    <div class="q-feedback" id="fb25">Correto. As CPIs têm poderes de investigação próprios das autoridades judiciais, podendo quebrar sigilos bancário, fiscal e telefônico (por deliberação colegiada, fundamentada e pertinente). Porém, não podem: decretar prisão preventiva, realizar busca e apreensão domiciliar, interceptar comunicações em andamento ou afastar do cargo (reserva constitucional de jurisdição).</div>
+  </div>
+
+  <!-- Q26 -->
+  <div class="q-card" id="qc26">
+    <div class="q-meta"><span class="q-num">Questão 26</span><span class="q-badge qb-leg">Legislativo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">As CPIs municipais (Câmaras de Vereadores) têm, por si próprias, poder para quebrar sigilo bancário, assim como as CPIs federais e estaduais.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,26)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,26)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb26">Falso. As CPIs municipais podem ser instaladas, mas não têm, por ato próprio, poder para quebrar sigilo bancário. Isso decorre da posição particular dos Municípios na Federação (não elegem Senadores, não têm Judiciário próprio). Para a quebra de sigilo, as CPIs municipais dependem de autorização judicial. Esse entendimento é distinto para CPIs estaduais e distritais, que podem quebrar sigilos nos termos fixados pelo STF.</div>
+  </div>
+
+  <!-- Q27 -->
+  <div class="q-card" id="qc27">
+    <div class="q-meta"><span class="q-num">Questão 27</span><span class="q-badge qb-leg">Legislativo</span></div>
+    <div class="q-text">Deputados e Senadores, nos termos do art. 54, CF/88, têm vedado, desde a expedição do diploma:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="true" onclick="answer(this,27)">a) Firmar ou manter contrato com pessoa jurídica de direito público, salvo quando o contrato obedecer a cláusulas uniformes</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,27)">b) Ser proprietário de empresa que não goze de favor de contrato público</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,27)">c) Exercer apenas atividades privadas sem qualquer vinculação com o poder público</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,27)">d) Votar em projetos de lei que beneficiem seu Estado de origem</button>
+    </div>
+    <div class="q-feedback" id="fb27">Correto. O art. 54, I, proíbe, desde a expedição do diploma: firmar ou manter contrato com pessoa jurídica de direito público, autarquia, empresa pública, sociedade de economia mista ou empresa concessionária de serviço público, salvo quando o contrato obedecer a cláusulas uniformes; e aceitar ou exercer cargo, função ou emprego remunerado nessas entidades.</div>
+  </div>
+
+  <!-- Q28 -->
+  <div class="q-card" id="qc28">
+    <div class="q-meta"><span class="q-num">Questão 28</span><span class="q-badge qb-leg">Legislativo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">A perda do mandato parlamentar por inobservância de incompatibilidade (art. 55, I) é declarada automaticamente pela Mesa da Casa, sem necessidade de votação.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,28)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,28)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb28">Falso. A perda do mandato por infração às incompatibilidades do art. 54 (art. 55, I) é caso de "cassação" — não extinção. Portanto, será DECIDIDA pela Câmara ou pelo Senado, por maioria absoluta, mediante provocação da Mesa ou de partido político, assegurada ampla defesa (art. 55, §2.º). A declaração automática pela Mesa (extinção) ocorre em hipóteses distintas, como o não comparecimento em 1/3 das sessões (art. 55, III e §3.º).</div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="q-card" id="qc29">
+    <div class="q-meta"><span class="q-num">Questão 29</span><span class="q-badge qb-leg">Legislativo</span></div>
+    <div class="q-text">A EC 76/2013 alterou o processo de cassação de mandato parlamentar. Qual a principal modificação introduzida?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,29)">a) Aumentou o quórum para 3/5 nos casos de cassação</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,29)">b) Eliminou a necessidade de ampla defesa no processo de cassação</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,29)">c) Aboliu a votação secreta nos casos de perda de mandato de Deputado ou Senador, tornando-a ostensiva (voto aberto)</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,29)">d) Atribuiu ao STF, e não à Casa respectiva, a competência para cassar o mandato</button>
+    </div>
+    <div class="q-feedback" id="fb29">Correto. A EC 76/2013 (PEC do Voto Aberto) aboliu a votação secreta nas hipóteses de cassação do mandato (art. 55, I, II e VI), tornando a deliberação ostensiva. Isso garante maior transparência, permitindo que o povo saiba como seus representantes votam em situações tão graves como condenação criminal de parlamentar.</div>
+  </div>
+
+  <!-- Q30 -->
+  <div class="q-card" id="qc30">
+    <div class="q-meta"><span class="q-num">Questão 30</span><span class="q-badge qb-leg">Legislativo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">As imunidades parlamentares (inclusive a prerrogativa de foro) estendem-se aos suplentes de Deputados e Senadores, ainda que estes não estejam no efetivo exercício do cargo.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,30)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,30)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb30">Falso. As imunidades são prerrogativas que decorrem do efetivo exercício da função parlamentar. Não são garantias da pessoa, mas do cargo. Os suplentes não gozam das imunidades — inclusive a prerrogativa de foro — a menos que assumam o cargo ou estejam em seu efetivo exercício (STF, Inqs. 2.453-AgR, 2.421-AgR e 2.800).</div>
+  </div>
+
+  <!-- Q31 -->
+  <div class="q-card" id="qc31">
+    <div class="q-meta"><span class="q-num">Questão 31</span><span class="q-badge qb-leg">Legislativo</span></div>
+    <div class="q-text">O Vereador Municipal goza de imunidade:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,31)">a) Material e formal, em igualdade com os Deputados Federais</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,31)">b) Material (inviolabilidade por opiniões, palavras e votos), limitada ao exercício do mandato e à circunscrição do Município</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,31)">c) Formal para prisão e para processo, mas não material</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,31)">d) Nenhuma imunidade, pois a CF não estende garantias a mandatos municipais</button>
+    </div>
+    <div class="q-feedback" id="fb31">Correto. O art. 29, VIII, da CF/88 assegura ao Vereador a inviolabilidade por suas opiniões, palavras e votos no exercício do mandato e na circunscrição do Município (imunidade material/inviolabilidade). Contudo, os Vereadores não têm imunidade formal ou processual para prisão ou processo, diferentemente dos parlamentares federais.</div>
+  </div>
+
+  <!-- Q32 -->
+  <div class="q-card" id="qc32">
+    <div class="q-meta"><span class="q-num">Questão 32</span><span class="q-badge qb-leg">Legislativo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">A Câmara dos Deputados é composta por representantes do povo, eleitos pelo sistema proporcional à população de cada Estado e do DF, sendo o número total de Deputados fixado em 513 pela LC 78/93.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,32)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,32)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb32">Verdadeiro. A Câmara dos Deputados representa o povo (art. 45, CF/88), com Deputados eleitos pelo sistema proporcional. O número total de 513 foi fixado pela LC 78/93. Nenhum Estado nem o DF pode ter menos de 8 ou mais de 70 Deputados. Os Territórios Federais, se criados, elegerão 4 Deputados.</div>
+  </div>
+
+  <!-- Q33 -->
+  <div class="q-card" id="qc33">
+    <div class="q-meta"><span class="q-num">Questão 33</span><span class="q-badge qb-leg">Legislativo</span></div>
+    <div class="q-text">Durante a vigência do estado de sítio, as imunidades parlamentares:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,33)">a) São automaticamente suspensas para todos os parlamentares</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,33)">b) Podem ser suspensas, mediante voto de 2/3 da Casa respectiva, apenas nos casos de atos praticados fora do Congresso e incompatíveis com a execução da medida</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,33)">c) Continuam em pleno vigor, sem qualquer possibilidade de suspensão</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,33)">d) São suspensas pelo STF mediante decisão fundamentada</button>
+    </div>
+    <div class="q-feedback" id="fb33">Correto. O art. 53, §8.º, da CF/88 estabelece que durante o estado de sítio (não o estado de defesa!) as imunidades podem ser suspensas mediante voto de 2/3 dos membros da Casa respectiva, mas apenas nos casos de atos praticados fora do recinto do Congresso que sejam incompatíveis com a execução da medida.</div>
+  </div>
+
+  <!-- Q34 -->
+  <div class="q-card" id="qc34">
+    <div class="q-meta"><span class="q-num">Questão 34</span><span class="q-badge qb-leg">Legislativo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">A perda do mandato parlamentar decorrente de sentença penal condenatória transitada em julgado (art. 55, VI) é automática, independendo de decisão da Casa respectiva.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,34)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,34)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb34">Falso. Após evolução jurisprudencial, o STF fixou (AP 565, j. 08.08.2013) que a perda do mandato parlamentar por condenação criminal não é automática. Deve ser observada a regra do art. 55, §2.º: a Casa respectiva delibera por maioria absoluta, mediante votação ostensiva (voto aberto — EC 76/2013), assegurada a ampla defesa.</div>
+  </div>
+</section>
+
+<!-- ===================== BLOCO 3: PROCESSO LEGISLATIVO ===================== -->
+<section id="bloco-proc">
+  <div class="section-head">
+    <div class="section-icon si-proc">📜</div>
+    <div>
+      <div class="section-title" style="color:#c4b5fd">Bloco 3 — Processo Legislativo</div>
+      <div class="section-count">Questões 35 a 54 · Espécies normativas, fases, iniciativa, sanção, veto</div>
+    </div>
+  </div>
+
+  <!-- Q35 -->
+  <div class="q-card" id="qc35">
+    <div class="q-meta"><span class="q-num">Questão 35</span><span class="q-badge qb-proc">Proc. Legislativo</span></div>
+    <div class="q-text">O processo legislativo ordinário divide-se em quantas fases? Assinale a alternativa correta:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,35)">a) Duas fases: introdutória e constitutiva</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,35)">b) Três fases: introdutória (iniciativa), constitutiva (deliberação parlamentar e executiva) e complementar (promulgação e publicação)</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,35)">c) Quatro fases: iniciativa, discussão, votação e publicação</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,35)">d) Apenas uma fase: a votação pelo Plenário de cada Casa</button>
+    </div>
+    <div class="q-feedback" id="fb35">Correto. O processo legislativo compreende três fases: (1) Introdutória — iniciativa; (2) Constitutiva — deliberação parlamentar (discussão e votação) e deliberação executiva (sanção ou veto); e (3) Complementar — promulgação e publicação. A promulgação atesta a existência da lei; a publicação leva o texto ao conhecimento geral.</div>
+  </div>
+
+  <!-- Q36 -->
+  <div class="q-card" id="qc36">
+    <div class="q-meta"><span class="q-num">Questão 36</span><span class="q-badge qb-proc">Proc. Legislativo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">A aprovação de Lei Complementar exige quórum de maioria absoluta, enquanto a Lei Ordinária exige maioria simples (maioria dos presentes, com quórum mínimo de maioria absoluta).</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,36)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,36)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb36">Verdadeiro. A Lei Complementar exige quórum de maioria absoluta (art. 69, CF/88). A Lei Ordinária exige maioria simples (maioria dos votos, presente a maioria absoluta dos membros — art. 47). A diferença não é de hierarquia, mas de competência: apenas as matérias expressamente reservadas pela CF podem ser objeto de LC.</div>
+  </div>
+
+  <!-- Q37 -->
+  <div class="q-card" id="qc37">
+    <div class="q-meta"><span class="q-num">Questão 37</span><span class="q-badge qb-proc">Proc. Legislativo</span></div>
+    <div class="q-text">A Emenda Constitucional, diferentemente das leis ordinárias e complementares:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,37)">a) Pode ser vetada pelo Presidente da República</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,37)">b) É promulgada pelas Mesas da Câmara dos Deputados e do Senado Federal, sem participação do PR</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,37)">c) Depende de referendo popular para entrar em vigor</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,37)">d) Pode ser proposta por qualquer cidadão com apoio de 1% do eleitorado</button>
+    </div>
+    <div class="q-feedback" id="fb37">Correto. As ECs são promulgadas pelas Mesas da Câmara dos Deputados e do Senado Federal (art. 60, §3.º), sem necessidade de sanção presidencial. Isso impede que o PR vete reforma constitucional aprovada pelo poder constituinte derivado. A iniciativa popular (1% do eleitorado) é para leis ordinárias (art. 61, §2.º), não para ECs.</div>
+  </div>
+
+  <!-- Q38 -->
+  <div class="q-card" id="qc38">
+    <div class="q-meta"><span class="q-num">Questão 38</span><span class="q-badge qb-proc">Proc. Legislativo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">A CF não pode ser emendada durante a vigência de intervenção federal, estado de defesa ou estado de sítio.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,38)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,38)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb38">Verdadeiro. O art. 60, §1.º, da CF/88 estabelece limitações circunstanciais ao poder de reforma: a CF não pode ser emendada na vigência de intervenção federal, estado de defesa ou estado de sítio. Trata-se de proteção à ordem constitucional em momentos de exceção, garantindo que reformas constitucionais ocorram apenas em ambiente de normalidade democrática.</div>
+  </div>
+
+  <!-- Q39 -->
+  <div class="q-card" id="qc39">
+    <div class="q-meta"><span class="q-num">Questão 39</span><span class="q-badge qb-proc">Proc. Legislativo</span></div>
+    <div class="q-text">Sobre a Medida Provisória (MP), assinale a afirmação CORRETA:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,39)">a) Pode ser reeditada na mesma sessão legislativa se rejeitada pelo Congresso Nacional</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,39)">b) Pode ser adotada em matéria reservada a Lei Complementar</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,39)">c) Vige por 60 dias, prorrogáveis por mais 60; é vedada a reedição na mesma sessão legislativa se rejeitada ou tornada ineficaz</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,39)">d) Depende de aprovação do Senado para entrar em vigor</button>
+    </div>
+    <div class="q-feedback" id="fb39">Correto. A MP tem vigência de 60 dias, prorrogável por mais 60 (art. 62, §3.º). É expressamente vedada a reedição, na mesma sessão legislativa, de MP que tenha sido rejeitada ou que tenha perdido sua eficácia por decurso de prazo (art. 62, §10.º). Matéria reservada a LC não pode ser objeto de MP.</div>
+  </div>
+
+  <!-- Q40 -->
+  <div class="q-card" id="qc40">
+    <div class="q-meta"><span class="q-num">Questão 40</span><span class="q-badge qb-proc">Proc. Legislativo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">Os projetos de lei de iniciativa dos Senadores ou de Comissões do Senado têm início no Senado Federal, funcionando a Câmara dos Deputados como Casa revisora.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,40)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,40)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb40">Verdadeiro. Como regra geral, os projetos de lei têm início na Câmara dos Deputados (art. 64, caput). Mas os projetos de iniciativa de Senadores ou de Comissões do Senado começam no Senado, funcionando a Câmara como Casa revisora. Há predominância da Casa iniciadora: se a Casa revisora emenda, só a emenda volta à iniciadora.</div>
+  </div>
+
+  <!-- Q41 -->
+  <div class="q-card" id="qc41">
+    <div class="q-meta"><span class="q-num">Questão 41</span><span class="q-badge qb-proc">Proc. Legislativo</span></div>
+    <div class="q-text">No processo legislativo sumário (urgência constitucional — art. 64), se o Presidente solicitar urgência para projeto de sua iniciativa, o prazo total máximo de apreciação é de:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,41)">a) 60 dias</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,41)">b) 90 dias</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,41)">c) 100 dias (45 na CD + 45 no SF + 10 na CD se houver emenda do SF)</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,41)">d) 120 dias</button>
+    </div>
+    <div class="q-feedback" id="fb41">Correto. O processo sumário prevê: 45 dias na CD (Casa iniciadora) + 45 dias no SF (Casa revisora) + 10 dias na CD para apreciar emendas do SF (se houver), totalizando no máximo 100 dias. Esses prazos não correm durante o recesso e não se aplicam a projetos de código (art. 64, §4.º).</div>
+  </div>
+
+  <!-- Q42 -->
+  <div class="q-card" id="qc42">
+    <div class="q-meta"><span class="q-num">Questão 42</span><span class="q-badge qb-proc">Proc. Legislativo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">O veto presidencial pode ser total ou parcial. No veto parcial, é possível vetar apenas uma palavra ou expressão isolada de um artigo.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,42)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,42)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb42">Falso. O veto parcial deve abranger o texto integral de artigo, parágrafo, inciso ou alínea (art. 66, §2.º). Não é possível vetar apenas uma palavra ou expressão isolada — isso dificultaria a compreensão do texto e distorceria a vontade do legislador. O veto deve ser sempre de uma unidade textual completa.</div>
+  </div>
+
+  <!-- Q43 -->
+  <div class="q-card" id="qc43">
+    <div class="q-meta"><span class="q-num">Questão 43</span><span class="q-badge qb-proc">Proc. Legislativo</span></div>
+    <div class="q-text">A derrubada do veto presidencial pelo Congresso Nacional exige:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,43)">a) Maioria simples, em sessão conjunta, voto secreto</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,43)">b) 2/3 dos membros, em votação separada por cada Casa</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,43)">c) Maioria absoluta dos membros do Congresso Nacional, em sessão conjunta, votação ostensiva</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,43)">d) 3/5 dos membros, em sessão conjunta, voto secreto</button>
+    </div>
+    <div class="q-feedback" id="fb43">Correto. O art. 66, §4.º, após a EC 76/2013, exige maioria absoluta dos Deputados e Senadores, em escrutínio secreto — mas a EC 76/2013 aboliu o voto secreto também nessa hipótese. Portanto, a votação é ostensiva (voto aberto) e em sessão conjunta do Congresso Nacional, por maioria absoluta dos membros.</div>
+  </div>
+
+  <!-- Q44 -->
+  <div class="q-card" id="qc44">
+    <div class="q-meta"><span class="q-num">Questão 44</span><span class="q-badge qb-proc">Proc. Legislativo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">A matéria constante de proposta de Emenda Constitucional rejeitada não pode ser objeto de nova proposta na mesma sessão legislativa.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,44)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,44)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb44">Verdadeiro. O art. 60, §5.º, estabelece que a matéria constante de proposta de emenda rejeitada ou havida por prejudicada não pode ser objeto de nova proposta na mesma sessão legislativa. Isso diferencia as ECs das leis ordinárias, para as quais a maioria absoluta pode reapresentar projeto rejeitado na mesma sessão (art. 67).</div>
+  </div>
+
+  <!-- Q45 -->
+  <div class="q-card" id="qc45">
+    <div class="q-meta"><span class="q-num">Questão 45</span><span class="q-badge qb-proc">Proc. Legislativo</span></div>
+    <div class="q-text">Quais são os legitimados para propor Emenda Constitucional, segundo o art. 60 da CF/88?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,45)">a) Apenas o Presidente da República e os Presidentes das Casas do Congresso</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,45)">b) Qualquer cidadão com apoio de 1% do eleitorado nacional</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,45)">c) 1/3 dos membros da CD ou SF; PR; mais da metade das Assembleias Legislativas (maioria relativa de cada)</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,45)">d) Apenas o Procurador-Geral da República e o STF</button>
+    </div>
+    <div class="q-feedback" id="fb45">Correto. Os legitimados para propor PEC são (art. 60, I-III): I — 1/3, no mínimo, dos membros da CD ou do SF; II — o Presidente da República; III — mais da metade das Assembleias Legislativas das unidades da Federação, manifestando-se cada uma delas pela maioria relativa de seus membros. Não há iniciativa popular para ECs.</div>
+  </div>
+
+  <!-- Q46 -->
+  <div class="q-card" id="qc46">
+    <div class="q-meta"><span class="q-num">Questão 46</span><span class="q-badge qb-proc">Proc. Legislativo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">A lei delegada é elaborada pelo Presidente da República, mediante delegação concedida pelo Congresso Nacional por meio de resolução, que especificará o conteúdo, os termos de seu exercício e, quando for o caso, se o projeto aprovado pelo PR deverá ser apreciado pelo CN.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,46)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,46)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb46">Verdadeiro. O art. 68 da CF/88 disciplina as leis delegadas: o PR solicita a delegação, o CN a concede por resolução especificando conteúdo e condições. Quando a resolução determinar a apreciação do projeto, este será votado em turno único, vedadas emendas. Não podem ser objeto de delegação: atos de competência exclusiva do CN, CD ou SF; matéria reservada a LC; legislação sobre determinados temas (organização do Judiciário, MP, cidadania, etc.).</div>
+  </div>
+
+  <!-- Q47 -->
+  <div class="q-card" id="qc47">
+    <div class="q-meta"><span class="q-num">Questão 47</span><span class="q-badge qb-proc">Proc. Legislativo</span></div>
+    <div class="q-text">Um projeto de lei rejeitado pela Casa iniciadora pode ser reapresentado na mesma sessão legislativa:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,47)">a) Não pode ser reapresentado em hipótese alguma na mesma sessão legislativa</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,47)">b) Mediante proposta da maioria absoluta dos membros de qualquer das Casas do Congresso Nacional</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,47)">c) Automaticamente, após decorridos 30 dias da rejeição</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,47)">d) Por solicitação do Presidente da República, independentemente de quórum</button>
+    </div>
+    <div class="q-feedback" id="fb47">Correto. O art. 67 da CF/88 (regra da irrepetibilidade) permite a reapresentação de projeto rejeitado na mesma sessão legislativa somente mediante proposta da maioria absoluta dos membros de qualquer das Casas. Para matérias de iniciativa reservada ou exclusiva, a regra da irrepetibilidade é absoluta e o projeto só pode ser reapresentado na sessão seguinte.</div>
+  </div>
+
+  <!-- Q48 -->
+  <div class="q-card" id="qc48">
+    <div class="q-meta"><span class="q-num">Questão 48</span><span class="q-badge qb-proc">Proc. Legislativo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">O Presidente da República pode adotar Medida Provisória sobre matéria disciplinada em projeto de lei já aprovado pelo Congresso Nacional e pendente de sanção ou veto.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,48)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,48)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb48">Falso. O art. 62, §1.º, I, "d", da CF/88 (EC 32/2001) veda expressamente a edição de MP sobre matéria já disciplinada em projeto de lei aprovado pelo Congresso Nacional e pendente de sanção ou veto do Presidente da República. Isso evita que o PR burle o processo legislativo editando MP sobre o que o CN já deliberou.</div>
+  </div>
+
+  <!-- Q49 -->
+  <div class="q-card" id="qc49">
+    <div class="q-meta"><span class="q-num">Questão 49</span><span class="q-badge qb-proc">Proc. Legislativo</span></div>
+    <div class="q-text">Os tratados e convenções internacionais sobre direitos humanos aprovados em cada Casa do Congresso Nacional, em dois turnos, por 3/5 dos respectivos membros, equivalem a:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,49)">a) Lei Ordinária</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,49)">b) Lei Complementar</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,49)">c) Emendas Constitucionais</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,49)">d) Decretos Legislativos</button>
+    </div>
+    <div class="q-feedback" id="fb49">Correto. O art. 5.º, §3.º, da CF/88 (EC 45/2004) estabelece que os tratados internacionais de direitos humanos aprovados em cada Casa do CN em dois turnos por 3/5 dos membros equivalem às emendas constitucionais. Os que não passarem por esse rito têm status supralegal (acima das leis, mas abaixo da CF) — entendimento do STF no RE 466.343.</div>
+  </div>
+
+  <!-- Q50 -->
+  <div class="q-card" id="qc50">
+    <div class="q-meta"><span class="q-num">Questão 50</span><span class="q-badge qb-proc">Proc. Legislativo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">A iniciativa popular de lei federal exige a subscrição por pelo menos 1% do eleitorado nacional, distribuída por pelo menos 5 Estados, com não menos de 3/10% dos eleitores de cada um deles.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,50)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,50)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb50">Verdadeiro. O art. 61, §2.º, da CF/88 estabelece exatamente esses requisitos para a iniciativa popular de lei. O projeto deve ser apresentado à Câmara dos Deputados (Casa iniciadora). Trata-se de importante mecanismo de democracia direta, expressão da soberania popular.</div>
+  </div>
+
+  <!-- Q51 -->
+  <div class="q-card" id="qc51">
+    <div class="q-meta"><span class="q-num">Questão 51</span><span class="q-badge qb-proc">Proc. Legislativo</span></div>
+    <div class="q-text">O Decreto Legislativo é usado para materializar:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,51)">a) As competências privativas da Câmara dos Deputados (art. 51)</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,51)">b) As competências exclusivas do Congresso Nacional (art. 49), não sujeitas à sanção presidencial</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,51)">c) As competências privativas do Senado Federal (art. 52)</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,51)">d) As competências compartilhadas do CN com o Judiciário</button>
+    </div>
+    <div class="q-feedback" id="fb51">Correto. As competências exclusivas do Congresso Nacional (art. 49), que não precisam de sanção presidencial, são materializadas por Decreto Legislativo. Exemplos: aprovação de tratados internacionais, autorização para o PR declarar guerra, autorização de referendo e plebiscito. Já as competências privativas de cada Casa (arts. 51 e 52) são materializadas por Resolução.</div>
+  </div>
+
+  <!-- Q52 -->
+  <div class="q-card" id="qc52">
+    <div class="q-meta"><span class="q-num">Questão 52</span><span class="q-badge qb-proc">Proc. Legislativo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">A sanção presidencial tácita ocorre quando o Presidente da República deixa de manifestar-se no prazo de 15 dias úteis, implicando a aprovação do projeto de lei.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,52)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,52)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb52">Verdadeiro. O art. 66, §3.º, estabelece que "decorrido o prazo de quinze dias, o silêncio do Presidente da República importará sanção". São 15 dias úteis (não corridos). A sanção pode ser expressa (quando o PR assina) ou tácita (quando permanece em silêncio dentro do prazo).</div>
+  </div>
+
+  <!-- Q53 -->
+  <div class="q-card" id="qc53">
+    <div class="q-meta"><span class="q-num">Questão 53</span><span class="q-badge qb-proc">Proc. Legislativo</span></div>
+    <div class="q-text">Projetos de lei de iniciativa exclusiva do Presidente da República NÃO podem receber emendas parlamentares que:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,53)">a) Modifiquem a redação dos dispositivos</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,53)">b) Aumentem a despesa prevista no projeto</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,53)">c) Reduzam a despesa prevista no projeto</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,53)">d) Corrijam erros de redação</button>
+    </div>
+    <div class="q-feedback" id="fb53">Correto. O art. 63, I, da CF/88 veda emendas que aumentem a despesa prevista em projetos de lei de iniciativa exclusiva do PR (ressalvado o art. 166, §§3.º e 4.º sobre o orçamento). A proibição visa preservar o equilíbrio fiscal e o planejamento do Executivo. Emendas que reduzam a despesa ou corrijam redação são permitidas.</div>
+  </div>
+
+  <!-- Q54 -->
+  <div class="q-card" id="qc54">
+    <div class="q-meta"><span class="q-num">Questão 54</span><span class="q-badge qb-proc">Proc. Legislativo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">A Casa revisora, ao emendar o projeto de lei aprovado pela Casa iniciadora, devolve todo o projeto para nova apreciação pela Casa iniciadora.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,54)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,54)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb54">Falso. Segundo o art. 65, parágrafo único, da CF/88, apenas a emenda (e somente o que foi alterado) volta à Casa iniciadora — não o projeto inteiro. É vedada a apresentação de emenda à emenda (subemenda). Esse mecanismo garante a celeridade e a predominância da Casa iniciadora, que pode aceitar ou rejeitar a emenda, mas não pode emendar novamente o que foi emendado.</div>
+  </div>
+</section>
+
+<!-- ===================== BLOCO 4: PODER EXECUTIVO ===================== -->
+<section id="bloco-exe">
+  <div class="section-head">
+    <div class="section-icon si-exe">🏛</div>
+    <div>
+      <div class="section-title" style="color:#6ee7b7">Bloco 4 — Poder Executivo</div>
+      <div class="section-count">Questões 55 a 66 · Presidente da República, atribuições, crimes, substituição</div>
+    </div>
+  </div>
+
+  <!-- Q55 -->
+  <div class="q-card" id="qc55">
+    <div class="q-meta"><span class="q-num">Questão 55</span><span class="q-badge qb-exe">Executivo</span></div>
+    <div class="q-text">São requisitos para candidatura ao cargo de Presidente da República, EXCETO:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,55)">a) Ser brasileiro nato</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,55)">b) Ter no mínimo 35 anos</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,55)">c) Ter no mínimo 10 anos de residência no Brasil</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,55)">d) Estar no pleno exercício dos direitos políticos</button>
+    </div>
+    <div class="q-feedback" id="fb55">Correto (alternativa C é a incorreta). A CF/88 não exige tempo mínimo de residência no Brasil para a candidatura à Presidência. Os requisitos são: ser brasileiro nato (art. 12, §3.º, I), ter pelo menos 35 anos, estar no pleno exercício dos direitos políticos, ter alistamento eleitoral, ter domicílio eleitoral na circunscrição, ter filiação partidária e não ser inelegível.</div>
+  </div>
+
+  <!-- Q56 -->
+  <div class="q-card" id="qc56">
+    <div class="q-meta"><span class="q-num">Questão 56</span><span class="q-badge qb-exe">Executivo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">Para que o Presidente da República seja processado por crime comum praticado durante o exercício do cargo, é necessária autorização da Câmara dos Deputados por 2/3 de seus membros, procedendo-se ao julgamento pelo STF.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,56)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,56)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb56">Verdadeiro. Para crimes comuns: a CD autoriza por 2/3 (art. 51, I) e o STF julga (art. 102, I, "b"). Para crimes de responsabilidade: a CD autoriza por 2/3 (art. 51, I) e o SF processa e julga (art. 52, I), sob presidência do Presidente do STF, com possível pena de perda do cargo e inabilitação por 8 anos (art. 52, parágrafo único).</div>
+  </div>
+
+  <!-- Q57 -->
+  <div class="q-card" id="qc57">
+    <div class="q-meta"><span class="q-num">Questão 57</span><span class="q-badge qb-exe">Executivo</span></div>
+    <div class="q-text">No caso de vacância dos cargos de Presidente e Vice-Presidente da República nos primeiros dois anos do mandato, a solução constitucional é:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="true" onclick="answer(this,57)">a) Eleição direta em 90 dias</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,57)">b) Eleição indireta pelo Congresso Nacional em 30 dias</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,57)">c) Assunção definitiva pelo Presidente da Câmara dos Deputados</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,57)">d) Convocação de nova eleição no prazo de 60 dias</button>
+    </div>
+    <div class="q-feedback" id="fb57">Correto. O art. 81 da CF/88 estabelece duas regras: se a vacância ocorrer nos 2 primeiros anos do mandato, realiza-se eleição direta em 90 dias; se nos 2 últimos anos, realiza-se eleição indireta pelo Congresso Nacional em 30 dias (mandato-tampão para completar o período restante). Antes da vacância ocorrer, o impedimento temporário é suprido pelo Vice-PR.</div>
+  </div>
+
+  <!-- Q58 -->
+  <div class="q-card" id="qc58">
+    <div class="q-meta"><span class="q-num">Questão 58</span><span class="q-badge qb-exe">Executivo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">É inconstitucional norma de Constituição Estadual que condicione a instauração de ação penal contra o Governador à autorização prévia da Assembleia Legislativa.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,58)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,58)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb58">Verdadeiro. O STF, no julgamento das ADIs 5.540, 4.798, 4.764 e 4.797 (2017), firmou que é inconstitucional norma estadual que condicione ação penal contra Governador à autorização prévia da Assembleia Legislativa. A prerrogativa de autorização prévia pelo Parlamento é exclusiva do Presidente da República (art. 51, I, CF/88), por expressa previsão constitucional, não se estendendo aos Governadores.</div>
+  </div>
+
+  <!-- Q59 -->
+  <div class="q-card" id="qc59">
+    <div class="q-meta"><span class="q-num">Questão 59</span><span class="q-badge qb-exe">Executivo</span></div>
+    <div class="q-text">O Governador de Estado que pratica crime de responsabilidade é julgado por:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,59)">a) STJ</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,59)">b) Assembleia Legislativa estadual, exclusivamente</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,59)">c) Tribunal Especial misto previsto na Lei 1.079/50, composto de 5 membros do Legislativo e 5 desembargadores, presidido pelo Presidente do TJ</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,59)">d) Senado Federal</button>
+    </div>
+    <div class="q-feedback" id="fb59">Correto. Por crime de responsabilidade, o Governador é julgado pelo Tribunal Especial misto previsto nos arts. 78 e 79 da Lei 1.079/50 (recepcionada pela CF/88 como lei nacional), composto de 5 membros do Legislativo (eleitos pela Assembleia) e 5 desembargadores (sorteados), presidido pelo Presidente do TJ. Para crime comum, o STJ tem competência (art. 105, I, "a").</div>
+  </div>
+
+  <!-- Q60 -->
+  <div class="q-card" id="qc60">
+    <div class="q-meta"><span class="q-num">Questão 60</span><span class="q-badge qb-exe">Executivo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">O Presidente da República exerce ao mesmo tempo a função de Chefe de Estado e Chefe de Governo, sendo auxiliado pelos Ministros de Estado.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,60)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,60)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb60">Verdadeiro. O art. 76 da CF/88 estabelece que "o Poder Executivo é exercido pelo Presidente da República, auxiliado pelos Ministros de Estado". No presidencialismo brasileiro, o PR acumula as funções de Chefe de Estado (representa o Estado nas relações internacionais) e Chefe de Governo (dirige a Administração Federal), além de ser o supremo Chefe das Forças Armadas.</div>
+  </div>
+
+  <!-- Q61 -->
+  <div class="q-card" id="qc61">
+    <div class="q-meta"><span class="q-num">Questão 61</span><span class="q-badge qb-exe">Executivo</span></div>
+    <div class="q-text">A substituição temporária do Presidente da República, em caso de impedimento, obedece a seguinte ordem:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="true" onclick="answer(this,61)">a) Vice-PR → Presidente da Câmara dos Deputados → Presidente do Senado Federal → Presidente do STF</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,61)">b) Presidente do STF → Presidente do Senado → Presidente da Câmara</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,61)">c) Vice-PR → Presidente do Senado → Presidente da Câmara → Presidente do STF</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,61)">d) Ministro da Justiça → Vice-PR → Presidente do Senado</button>
+    </div>
+    <div class="q-feedback" id="fb61">Correto. Em caso de impedimento ou ausência do PR, o Vice-PR assume. Se este também estiver impedido: Presidente da Câmara dos Deputados → Presidente do Senado Federal → Presidente do STF. Essa ordem se aplica ao impedimento temporário; para a vacância definitiva, aplicam-se as regras do art. 81 da CF/88.</div>
+  </div>
+
+  <!-- Q62 -->
+  <div class="q-card" id="qc62">
+    <div class="q-meta"><span class="q-num">Questão 62</span><span class="q-badge qb-exe">Executivo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">O Presidente da República pode emitir decretos autônomos para organização e funcionamento da Administração Federal quando não implicar aumento de despesa nem criação ou extinção de órgãos públicos.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,62)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,62)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb62">Verdadeiro. O art. 84, VI, "a", da CF/88 (EC 32/2001) permite ao PR dispor, mediante decreto, sobre a organização e funcionamento da Administração Federal quando não implicar aumento de despesa nem criação ou extinção de órgãos públicos. Quando envolver extinção de cargos ou funções vagos, também pode ser por decreto (art. 84, VI, "b"). É a função atípica de natureza legislativa do Executivo.</div>
+  </div>
+
+  <!-- Q63 -->
+  <div class="q-card" id="qc63">
+    <div class="q-meta"><span class="q-num">Questão 63</span><span class="q-badge qb-exe">Executivo</span></div>
+    <div class="q-text">Quanto ao Prefeito Municipal que pratica crime comum, a competência para processá-lo e julgá-lo é, em regra:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,63)">a) STJ, por prerrogativa de foro</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,63)">b) Tribunal de Justiça local (art. 29, X)</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,63)">c) Vara Criminal de 1.ª instância da comarca</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,63)">d) Câmara Municipal</button>
+    </div>
+    <div class="q-feedback" id="fb63">Correto. O art. 29, X, da CF/88 atribui ao Tribunal de Justiça local a competência para julgar o Prefeito nos crimes comuns. Exceções: crime federal → TRF; crime eleitoral → TRE; crime contra bens/serviços/interesses da União → TRF. Para infrações político-administrativas (crime de responsabilidade impróprio), a competência é da Câmara Municipal (art. 31).</div>
+  </div>
+
+  <!-- Q64 -->
+  <div class="q-card" id="qc64">
+    <div class="q-meta"><span class="q-num">Questão 64</span><span class="q-badge qb-exe">Executivo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">O Presidente da República pode ser processado por qualquer crime ocorrido antes do exercício do mandato, desde que autorizado pela Câmara dos Deputados.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,64)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,64)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb64">Falso. A imunidade relativa do PR se limita aos atos praticados durante o mandato. Crimes ocorridos antes da posse — que não guardem relação com o cargo — podem ser processados normalmente no STF, sem necessidade de autorização prévia da CD. A necessidade de autorização da Câmara diz respeito a crimes praticados no exercício do cargo e relacionados ao mandato.</div>
+  </div>
+
+  <!-- Q65 -->
+  <div class="q-card" id="qc65">
+    <div class="q-meta"><span class="q-num">Questão 65</span><span class="q-badge qb-exe">Executivo</span></div>
+    <div class="q-text">Compete exclusivamente ao Congresso Nacional (art. 49), sendo dispensada a sanção presidencial:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,65)">a) Legislar sobre normas gerais de licitação</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,65)">b) Autorizar o Presidente a declarar guerra e celebrar a paz</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,65)">c) Criar tributos federais</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,65)">d) Fixar limites territoriais entre Estados</button>
+    </div>
+    <div class="q-feedback" id="fb65">Correto. O art. 49, II, da CF/88 atribui ao CN a competência exclusiva para autorizar o PR a declarar guerra, celebrar a paz, permitir forças estrangeiras no território e outras medidas similares. Por ser competência exclusiva do CN, é materializada por Decreto Legislativo, sem necessidade de sanção do PR.</div>
+  </div>
+
+  <!-- Q66 -->
+  <div class="q-card" id="qc66">
+    <div class="q-meta"><span class="q-num">Questão 66</span><span class="q-badge qb-exe">Executivo</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">O Presidente da República pode se ausentar do País por qualquer período, sem necessidade de autorização do Congresso Nacional.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,66)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,66)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb66">Falso. O art. 49, III, da CF/88 atribui ao Congresso Nacional a competência exclusiva de "autorizar o Presidente e o Vice-Presidente da República a se ausentarem do País, quando a ausência exceder a quinze dias". Para ausências de até 15 dias, não é necessária autorização do CN. Ausentando-se sem autorização para mais de 15 dias, o PR perde o cargo.</div>
+  </div>
+</section>
+
+<!-- ===================== BLOCO 5: PODER JUDICIÁRIO ===================== -->
+<section id="bloco-jud">
+  <div class="section-head">
+    <div class="section-icon si-jud">⚖</div>
+    <div>
+      <div class="section-title" style="color:#fcd34d">Bloco 5 — Poder Judiciário</div>
+      <div class="section-count">Questões 67 a 80 · STF, STJ, CNJ, garantias, foro por prerrogativa, tribunais</div>
+    </div>
+  </div>
+
+  <!-- Q67 -->
+  <div class="q-card" id="qc67">
+    <div class="q-meta"><span class="q-num">Questão 67</span><span class="q-badge qb-jud">Judiciário</span></div>
+    <div class="q-text">Quais são as três garantias constitucionais dos magistrados previstas no art. 95 da CF/88?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,67)">a) Estabilidade, inamovibilidade e irredutibilidade de salário</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,67)">b) Vitaliciedade, inamovibilidade e irredutibilidade de subsídios</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,67)">c) Vitaliciedade, estabilidade e irredutibilidade de vencimentos</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,67)">d) Inamovibilidade, imparcialidade e independência funcional</button>
+    </div>
+    <div class="q-feedback" id="fb67">Correto. O art. 95, I-III, da CF/88 prevê três garantias: (I) vitaliciedade — após 2 anos de exercício, o magistrado só perde o cargo por sentença judicial transitada em julgado; (II) inamovibilidade — não pode ser removido/promovido sem seu consentimento, salvo interesse público por voto de 2/3 do tribunal; (III) irredutibilidade de subsídios — vedada qualquer redução.</div>
+  </div>
+
+  <!-- Q68 -->
+  <div class="q-card" id="qc68">
+    <div class="q-meta"><span class="q-num">Questão 68</span><span class="q-badge qb-jud">Judiciário</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">O STF é composto por 11 Ministros, nomeados pelo Presidente da República e aprovados pelo Senado Federal por maioria simples.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,68)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,68)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb68">Falso. O STF é composto por 11 Ministros (art. 101), nomeados pelo PR após aprovação por maioria ABSOLUTA do Senado Federal — e não maioria simples (art. 101, parágrafo único). Os requisitos: ser cidadão brasileiro (nato ou naturalizado), entre 35 e 65 anos, com notável saber jurídico e reputação ilibada. Mandato vitalício até 70 anos.</div>
+  </div>
+
+  <!-- Q69 -->
+  <div class="q-card" id="qc69">
+    <div class="q-meta"><span class="q-num">Questão 69</span><span class="q-badge qb-jud">Judiciário</span></div>
+    <div class="q-text">O CNJ — Conselho Nacional de Justiça é composto por 15 membros. Qual deles é membro NATO, não precisando ser sabatinado pelo Senado Federal?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,69)">a) O Ministro mais antigo do STF</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,69)">b) O Ministro Presidente do STF (EC 61/2009)</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,69)">c) O Presidente do STJ</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,69)">d) O Procurador-Geral da República</button>
+    </div>
+    <div class="q-feedback" id="fb69">Correto. A EC 61/2009 modificou o art. 103-B, I, para estabelecer que o membro nato do CNJ é o Ministro Presidente do STF (não qualquer Ministro). O CNJ é presidido pelo Presidente do STF, que não precisa de sabatina. Todos os demais 14 membros são nomeados pelo PR após aprovação por maioria absoluta do SF.</div>
+  </div>
+
+  <!-- Q70 -->
+  <div class="q-card" id="qc70">
+    <div class="q-meta"><span class="q-num">Questão 70</span><span class="q-badge qb-jud">Judiciário</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">O CNJ exerce controle sobre todos os órgãos do Poder Judiciário, inclusive o STF.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,70)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,70)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb70">Falso. O STF, como órgão de cúpula do Poder Judiciário, está excluído do controle do CNJ. O CNJ incide sobre todos os órgãos e juízes hierarquicamente inferiores ao STF (ADI 3.367, Rel. Min. Cezar Peluso). O STF exerce controle sobre os atos do CNJ, e não o contrário.</div>
+  </div>
+
+  <!-- Q71 -->
+  <div class="q-card" id="qc71">
+    <div class="q-meta"><span class="q-num">Questão 71</span><span class="q-badge qb-jud">Judiciário</span></div>
+    <div class="q-text">São órgãos do Poder Judiciário, segundo o art. 92 da CF/88, EXCETO:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,71)">a) O Conselho Nacional de Justiça</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,71)">b) O Tribunal Superior do Trabalho</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,71)">c) O Tribunal Marítimo</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,71)">d) O Tribunal Superior Eleitoral</button>
+    </div>
+    <div class="q-feedback" id="fb71">Correto (alternativa C é a incorreta). O Tribunal Marítimo NÃO é órgão do Poder Judiciário — é órgão autônomo, auxiliar do Poder Judiciário, com funções administrativas e judicantes específicas sobre acidentes náuticos, mas não integra o Judiciário. Os órgãos do Judiciário são taxativamente listados no art. 92, CF/88.</div>
+  </div>
+
+  <!-- Q72 -->
+  <div class="q-card" id="qc72">
+    <div class="q-meta"><span class="q-num">Questão 72</span><span class="q-badge qb-jud">Judiciário</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">As decisões do TSE são, em regra, irrecorríveis. Contudo, as que contrariarem a Constituição ou as denegatórias de HC ou MS podem ser objeto de recurso para o STF.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,72)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,72)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb72">Verdadeiro. O art. 121, §3.º, da CF/88 estabelece que as decisões do TSE são irrecorríveis, salvo: as que contrariarem a CF (recorríveis ao STF por RE) e as denegatórias de HC ou MS decididos em única instância (recorríveis ao STF por RO). Essa irrecorribilidade reforça a autonomia da Justiça Eleitoral como instância máxima nas questões eleitorais.</div>
+  </div>
+
+  <!-- Q73 -->
+  <div class="q-card" id="qc73">
+    <div class="q-meta"><span class="q-num">Questão 73</span><span class="q-badge qb-jud">Judiciário</span></div>
+    <div class="q-text">Qual é o número mínimo de membros do TSE e como se compõe esse tribunal?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,73)">a) Mínimo de 5 membros: 3 do STF e 2 advogados nomeados pelo PR</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,73)">b) Mínimo de 7 membros: 3 do STF, 2 do STJ e 2 advogados nomeados pelo PR (lista tríplice do STF)</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,73)">c) Mínimo de 9 membros: 4 do STF, 3 do STJ e 2 do TST</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,73)">d) Mínimo de 7 membros: todos do STF, eleitos internamente</button>
+    </div>
+    <div class="q-feedback" id="fb73">Correto. O art. 119 da CF/88 estabelece a composição do TSE: no mínimo 7 membros — 3 eleitos pelo STF (dentre seus Ministros), 2 eleitos pelo STJ (dentre seus Ministros) e 2 advogados nomeados pelo PR dentre 6 indicados pelo STF (lista tríplice). Presidente e Vice-Presidente eleitos entre os Ministros do STF; Corregedor-Geral, entre os do STJ.</div>
+  </div>
+
+  <!-- Q74 -->
+  <div class="q-card" id="qc74">
+    <div class="q-meta"><span class="q-num">Questão 74</span><span class="q-badge qb-jud">Judiciário</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">É inconstitucional norma de Constituição Estadual que estenda o foro por prerrogativa de função a autoridades não contempladas pela Constituição Federal de forma expressa ou por simetria.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,74)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,74)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb74">Verdadeiro. O STF firmou tese com efeito ex nunc no julgamento das ADIs 6.501, 6.502, 6.508, 6.515 e 6.516 (j. 23.08.2021): "é inconstitucional norma de Constituição estadual que estende o foro por prerrogativa de função a autoridades não contempladas pela Constituição Federal de forma expressa ou por simetria". A prerrogativa de foro é norma de exceção e deve ser interpretada restritivamente.</div>
+  </div>
+
+  <!-- Q75 -->
+  <div class="q-card" id="qc75">
+    <div class="q-meta"><span class="q-num">Questão 75</span><span class="q-badge qb-jud">Judiciário</span></div>
+    <div class="q-text">O Deputado Federal cometeu crime comum durante o exercício do mandato. A competência originária para processá-lo e julgá-lo é do:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,75)">a) Tribunal de Justiça do seu Estado</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,75)">b) Tribunal Regional Federal</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,75)">c) STF, desde a expedição do diploma</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,75)">d) STJ</button>
+    </div>
+    <div class="q-feedback" id="fb75">Correto. O art. 102, I, "b", c/c o art. 53, §1.º, da CF/88 atribui ao STF competência para julgar os membros do Congresso Nacional (Deputados Federais e Senadores) em crimes comuns, desde a expedição do diploma. Se cometido crime de responsabilidade, a competência é da Casa respectiva (art. 55, §2.º).</div>
+  </div>
+
+  <!-- Q76 -->
+  <div class="q-card" id="qc76">
+    <div class="q-meta"><span class="q-num">Questão 76</span><span class="q-badge qb-jud">Judiciário</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">Os juízes dos tribunais eleitorais (membros do TSE e dos TREs) são investidos em mandato a prazo certo: mínimo de 2 anos e nunca mais que dois biênios consecutivos.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,76)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,76)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb76">Verdadeiro. O art. 121, §2.º, da CF/88 estabelece que os juízes dos tribunais eleitorais "servirão por dois anos, no mínimo, e nunca por mais de dois biênios consecutivos, sendo os substitutos escolhidos na mesma ocasião e pelo mesmo processo, em número igual para cada categoria". A Justiça Eleitoral não tem magistrados fixos e próprios — todos são investidos a prazo certo.</div>
+  </div>
+
+  <!-- Q77 -->
+  <div class="q-card" id="qc77">
+    <div class="q-meta"><span class="q-num">Questão 77</span><span class="q-badge qb-jud">Judiciário</span></div>
+    <div class="q-text">Compete ao STJ processar e julgar, originariamente, crimes comuns e de responsabilidade dos:</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,77)">a) Presidentes da República e Ministros de Estado</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,77)">b) Desembargadores dos TJs dos Estados, membros dos TRFs, TRTs, TREs, do TCU e chefes de missão diplomática permanente</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,77)">c) Juízes Federais de 1.ª instância e membros do MPF em 1.ª instância</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,77)">d) Vereadores municipais de todo o país</button>
+    </div>
+    <div class="q-feedback" id="fb77">Correto. O art. 105, I, "a", da CF/88 atribui ao STJ competência originária para processar e julgar os desembargadores dos TJs dos Estados e do DF, membros dos TRFs, TRTs, TREs, membros dos Conselhos ou Tribunais de Contas dos Estados/DF/Municípios e do MP que oficie perante tribunais, além dos chefes de missão diplomática permanente.</div>
+  </div>
+
+  <!-- Q78 -->
+  <div class="q-card" id="qc78">
+    <div class="q-meta"><span class="q-num">Questão 78</span><span class="q-badge qb-jud">Judiciário</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">A Justiça Eleitoral possui competência administrativa, jurisdicional, consultiva e normativa, o que a torna uma justiça singular no cenário brasileiro.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,78)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,78)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb78">Verdadeiro. A Justiça Eleitoral é singular por possuir competências extremamente diversificadas: (1) administrativa — organiza e administra o processo eleitoral; (2) jurisdicional — julga ações eleitorais específicas; (3) consultiva — o TSE pode responder a consultas em tese sobre matéria eleitoral; (4) normativa — o TSE expede resoluções para fiel execução do Código Eleitoral. Essa diversidade a torna única no Judiciário brasileiro.</div>
+  </div>
+
+  <!-- Q79 -->
+  <div class="q-card" id="qc79">
+    <div class="q-meta"><span class="q-num">Questão 79</span><span class="q-badge qb-jud">Judiciário</span></div>
+    <div class="q-text">A Súmula Vinculante pode ser proposta ao STF por quais legitimados?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-correct="false" onclick="answer(this,79)">a) Apenas pelos próprios Ministros do STF</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,79)">b) Pelo STF de ofício, Tribunais e pelo Governador de Estado apenas</button>
+      <button class="q-opt" data-correct="true" onclick="answer(this,79)">c) STF (de ofício); PR; CN e suas Casas; Governadores; PGR; OAB; Tribunais; Municípios (incidentalmente); Defensorias (após LC 135/2009)</button>
+      <button class="q-opt" data-correct="false" onclick="answer(this,79)">d) Apenas os mesmos legitimados para a ADI (art. 103, CF/88)</button>
+    </div>
+    <div class="q-feedback" id="fb79">Correto. Os legitimados para propor edição, revisão ou cancelamento de Súmula Vinculante estão previstos no art. 3.º da Lei 11.417/2006: o STF (de ofício); o PR; a Mesa do CN, da CD, do SF; o PGR; o CN; as Assembleias e Câmaras Legislativas; os Governadores; o STJ, os TSTribunais Superiores, os TRFs, os TTs de Justiça (dos Estados, DF e Territórios); os Municípios (apenas incidentalmente, no curso de processo em que sejam parte); a OAB e a DPU/DPE.</div>
+  </div>
+
+  <!-- Q80 -->
+  <div class="q-card" id="qc80">
+    <div class="q-meta"><span class="q-num">Questão 80</span><span class="q-badge qb-jud">Judiciário</span><span class="q-badge qb-tf">V/F</span></div>
+    <div class="q-text">O Conselho Nacional de Justiça (CNJ), criado pela EC 45/2004, é órgão de controle administrativo, financeiro e disciplinar da magistratura — e não exerce função jurisdicional.</div>
+    <div class="tf-opts">
+      <button class="tf-opt" data-correct="true" onclick="answerTF(this,80)">Verdadeiro</button>
+      <button class="tf-opt" data-correct="false" onclick="answerTF(this,80)">Falso</button>
+    </div>
+    <div class="q-feedback" id="fb80">Verdadeiro. O CNJ é órgão de controle da atividade administrativa, financeira e disciplinar da magistratura, não exercendo função jurisdicional (não julga causas). Seus atos estão sujeitos ao controle jurisdicional do STF. Conforme destaque do Min. Fux, o CNJ exerce relevante papel na racionalização, transparência e eficiência da administração judiciária, com alcance nacional sobre todos os órgãos inferiores ao STF.</div>
+  </div>
+
+</section>
+</main>
+
+<footer>
+  <p>📚 Baseado em <strong>Coleção Esquematizado — Direito Constitucional, 29ª Ed. 2025</strong> — Pedro Lenza<br>
+  80 Questões de Fixação · CF/88 — Tripartição dos Poderes</p>
+</footer>
+
+<button id="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Voltar ao topo">↑</button>
+
+<script>
+  // ---- SCORE ----
+  let correct = 0;
+  let answered = {};
+  const TOTAL = 80;
+
+  function updateScore() {
+    correct = Object.keys(answered).filter(k => answered[k]).length;
+    const answered_count = Object.keys(answered).length;
+    document.getElementById('score-display').textContent = correct + ' / ' + TOTAL;
+    document.getElementById('hdr-score').textContent = correct;
+    const pct = Math.round((answered_count / TOTAL) * 100);
+    document.getElementById('prog-bar').style.width = pct + '%';
+    document.getElementById('pct-display').textContent = Math.round((correct / TOTAL) * 100) + '% acertos';
+  }
+
+  function answer(btn, qNum) {
+    const card = document.getElementById('qc' + qNum);
+    if (card.classList.contains('done')) return;
+    card.classList.add('done');
+    const isCorrect = btn.dataset.correct === 'true';
+    const fb = document.getElementById('fb' + qNum);
+    const opts = card.querySelectorAll('.q-opt');
+    opts.forEach(o => {
+      o.classList.add('disabled');
+      if (o.dataset.correct === 'true') o.classList.add('correct');
+    });
+    if (!isCorrect) btn.classList.add('wrong');
+    fb.className = 'q-feedback show ' + (isCorrect ? 'ok' : 'fail');
+    card.classList.add(isCorrect ? 'answered-ok' : 'answered-fail');
+    answered[qNum] = isCorrect;
+    updateScore();
+  }
+
+  function answerTF(btn, qNum) {
+    const card = document.getElementById('qc' + qNum);
+    if (card.classList.contains('done')) return;
+    card.classList.add('done');
+    const isCorrect = btn.dataset.correct === 'true';
+    const fb = document.getElementById('fb' + qNum);
+    const opts = card.querySelectorAll('.tf-opt');
+    opts.forEach(o => {
+      o.classList.add('disabled');
+      if (o.dataset.correct === 'true') o.classList.add('correct');
+    });
+    if (!isCorrect) btn.classList.add('wrong');
+    fb.className = 'q-feedback show ' + (isCorrect ? 'ok' : 'fail');
+    card.classList.add(isCorrect ? 'answered-ok' : 'answered-fail');
+    answered[qNum] = isCorrect;
+    updateScore();
+  }
+
+  function resetAll() {
+    answered = {};
+    updateScore();
+    for (let i = 1; i <= TOTAL; i++) {
+      const card = document.getElementById('qc' + i);
+      if (!card) continue;
+      card.classList.remove('done', 'answered-ok', 'answered-fail');
+      card.querySelectorAll('.q-opt, .tf-opt').forEach(o => {
+        o.classList.remove('correct', 'wrong', 'disabled');
+      });
+      const fb = document.getElementById('fb' + i);
+      if (fb) fb.className = 'q-feedback';
+    }
+  }
+
+  // ---- NAV ----
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('section[id]');
+  function updateNav() {
+    let cur = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 130) cur = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+    });
+  }
+  window.addEventListener('scroll', updateNav);
+  updateNav();
+
+  // ---- SCROLL TO TOP ----
+  const totop = document.getElementById('totop');
+  window.addEventListener('scroll', () => {
+    totop.classList.toggle('visible', window.scrollY > 400);
+  });
+</script>
+</body>
+</html>
+HTMLEOF
+echo "Done! File size: $(wc -c < /mnt/user-data/outputs/questoes_80_direito_constitucional.html) bytes"
